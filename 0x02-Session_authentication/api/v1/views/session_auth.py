@@ -1,10 +1,14 @@
+#!/usr/bin/env python3
+"""Module to deal with the session authentication
+"""
 from flask import request, jsonify, Blueprint
 from models.user import User
 from api.v1.app import auth  # Import the auth object from api.v1.app
 import os
 
 # Create a Blueprint for session authentication routes
-session_auth_bp = Blueprint('session_auth', __name__, url_prefix='/auth_session')
+session_auth_bp = Blueprint('session_auth', __name__,
+                            url_prefix='/auth_session')
 
 
 @session_auth_bp.route('/login', methods=['POST'])
@@ -15,7 +19,8 @@ def login():
 
     Returns:
         JSON response with user data upon successful login.
-        JSON response with error message and appropriate status code for invalid login attempts.
+        JSON response with error message and appropriate status code for
+        invalid login attempts.
     """
     # Retrieve email and password from request form data
     email = request.form.get('email')
