@@ -51,3 +51,16 @@ def login():
     response.set_cookie(session_cookie_name, session_id)
 
     return response
+
+def logout():
+    """Handle user logout by destroying the session.
+
+    Returns:
+        Empty JSON response with status code 200 upon successful logout.
+        JSON response with error message and status code 404 if logout fails.
+    """
+    # Destroy the session
+    if not auth.destroy_session(request):
+        abort(404)
+
+    return jsonify({}), 200
