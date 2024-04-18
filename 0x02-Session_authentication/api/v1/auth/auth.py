@@ -51,3 +51,9 @@ class Auth:
         object
         '''
         return None
+
+
+class SessionAuth(Auth):
+    """ Session Authentication class
+    """
+    pass
