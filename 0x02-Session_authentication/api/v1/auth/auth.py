@@ -3,6 +3,7 @@
 Module defining the Auth class
 '''
 from flask import request
+import os
 from typing import List, TypeVar
 
 
@@ -18,7 +19,7 @@ class Auth:
             ) -> bool:
         '''
         Returns False - path and excluded_paths
-        will be used later, now, you don’t need
+        will be used later, now, you don't need
         to take care of them
         '''
         if path is not None and excluded_paths is not None:
@@ -60,4 +61,4 @@ class Auth:
         # Get the session cookie name from environment variable
         session_cookie_name = os.getenv("SESSION_NAME", "_my_session_id")
         # Return the value of the cookie named session_cookie_name
-        return request.cookies.get(session_cookie_name)
+        return request.cookies.get(session_cookie_name, None)

@@ -2,7 +2,7 @@
 """ Module of Index views
 """
 from flask import jsonify, abort, Blueprint
-from api.v1.views import app_views
+# from api.v1.views import app_views
 
 app_views = Blueprint('app_views', __name__)
 
