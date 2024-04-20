@@ -7,6 +7,7 @@ import os
 from datetime import datetime, timedelta
 from api.v1.auth.session_auth import SessionAuth
 
+
 class SessionExpAuth(SessionAuth):
     """ Session Authentication class with expiration """
 
@@ -32,7 +33,7 @@ class SessionExpAuth(SessionAuth):
         session_id = super().create_session(user_id)
         if session_id is None:
             return None
-        
+
         # Create session dictionary
         session_dict = {
             'user_id': user_id,
@@ -48,7 +49,8 @@ class SessionExpAuth(SessionAuth):
             session_id: The Session ID for which the user ID is requested.
 
         Returns:
-            str: The User ID if the session is valid and active, None otherwise.
+            str: The User ID if the session is valid and active,
+            None otherwise.
         """
         if session_id is None or session_id not in self.user_id_by_session_id:
             return None
