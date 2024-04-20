@@ -4,6 +4,7 @@
 from flask import request
 from typing import List, TypeVar
 from api.v1.auth.auth import Auth
+from models import User
 import uuid
 
 
@@ -59,3 +60,23 @@ class SessionAuth(Auth):
         # Delete the Session ID from the dictionary
         del self.user_id_by_session_id[session_id]
         return True
+
+    def current_user(self, request=None):
+        """
+        Returns a User instance based on a cookie value.
+        """
+        # Retrieve the session cookie value
+        session_cookie_value = self.session_cookie(request)
+        
+        # If the session cookie value is None, return None
+        if session_cookie_value is None:
+            return None
+        
+        user_id = self.user_id_for_session_id(session_cookie_value)
+        
+        if user_id is None:
+            return None
+        
+        user = User.get(user_id)
+        
+        return user

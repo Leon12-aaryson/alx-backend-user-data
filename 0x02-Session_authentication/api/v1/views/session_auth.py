@@ -2,7 +2,7 @@
 """Module to deal with the session authentication
 """
 
-from flask import request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint, abort
 from models.user import User
 from api.v1.app import auth  # Import the auth object from api.v1.app
 import os
